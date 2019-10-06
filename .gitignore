@@ -34,3 +34,6 @@ build/
 .mvn
 mvnw
 mvnw.*
+
+### H2 ###
+h2.*
