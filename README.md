@@ -2,12 +2,16 @@
 ---
 ## Project includes:
 
-- JSP views
-- CSS Bootstrap
+- DevTools
 - Spring Data JPA
-- H2 file DataBase
+- H2 server DataBase
 - User entity
 - Rest services
+- Security
+- Custom login page
+- JSP views
+- CSS Bootstrap
+
 
 *First initialization DataBase:*
 
