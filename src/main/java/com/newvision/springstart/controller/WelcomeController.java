@@ -9,11 +9,12 @@ import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 @RequestMapping("/")
-public class TestController {
+public class WelcomeController {
 
     @RequestMapping(method = RequestMethod.GET)
     public String showHome(Model theModel) {
-        theModel.addAttribute("message","Spring MVC works!");
-        return "test";
+        theModel.addAttribute("message_mvc","Spring MVC works.");
+        theModel.addAttribute("message_rest","REST /api/**");
+        return "welcome";
     }
 }
