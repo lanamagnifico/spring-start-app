@@ -42,7 +42,7 @@
                     <button type="submit" class="btn btn-success">Login</button>
                   </div>
                   <div class="form-group" style="margin-left:50px;">
-                    <a href="" class="btn btn-primary">New User</a>
+                    <a href="<c:url value='/registrationForm'/>" class="btn btn-primary">New User</a>
                   </div>
               </form>
             </div>
