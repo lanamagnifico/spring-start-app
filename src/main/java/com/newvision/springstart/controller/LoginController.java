@@ -21,7 +21,7 @@ public class LoginController {
     @Autowired
     private AppUserService userService;
 
-    @GetMapping("/customLoginPage")
+    @GetMapping("/showCustomLoginPage")
     public String showMyLoginPage() {
         return "custom-login";
     }

@@ -32,7 +32,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                     .anyRequest().permitAll()
                 .and()
                 .formLogin()
-                    .loginPage("/customLoginPage")
+                    .loginPage("/showCustomLoginPage")
                     .loginProcessingUrl("/authenticate")
                     .permitAll()
                 .and()
