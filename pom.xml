@@ -9,10 +9,10 @@
 		<relativePath/> <!-- lookup parent from dao -->
 	</parent>
 	<groupId>com.newvision</groupId>
-	<artifactId>springstart</artifactId>
+	<artifactId>spring-start-app</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>springstart</name>
-	<description>Demo project for Spring Boot</description>
+	<name>spring-start-app</name>
+	<description>Spring Boot App for development</description>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

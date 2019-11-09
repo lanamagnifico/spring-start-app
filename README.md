@@ -2,12 +2,14 @@
 ---
 ## Project includes:
 
+- Java 8
+- Spring Boot 2.1.9.RELEASE
 - DevTools
 - Spring Data JPA
 - H2 server DataBase
 - User entity
-- Rest services
-- Security
+- Spring Rest
+- Spring Security
 - Custom login page
 - JSP views
 - CSS Bootstrap

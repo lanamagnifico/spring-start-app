@@ -45,8 +45,8 @@
                 <div class="card feature">
                   <div class="card-body">
                     <h5 class="card-title">H2 database <strong>mem:startdb</strong></h5>
-                    <p class="card-text">check </p>
                     <a class="card-link" href="<c:url value='/console'/>" target="_blank">console</a>
+                    <p class="card-text">Server: <%= application.getServerInfo() %></p>
                   </div>
                 </div>
               </div>
