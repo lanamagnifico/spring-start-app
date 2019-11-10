@@ -36,7 +36,7 @@ public class AppUserServiceImpl implements AppUserService {
     public AppUser save(AppUser user) {
         AppRole roleUser = roleService.findRoleByName(Roles.ROLE_USER.toString());
         AppUser dbUser = saveUser(user,roleUser);
-        logger.info("User created " + dbUser.toString());
+        logger.info("User created " + dbUser.getUserName());
         return dbUser;
     }
 
@@ -47,6 +47,7 @@ public class AppUserServiceImpl implements AppUserService {
     }
 
     @PostConstruct
+    @Transactional
     public void createFirstAdminIfNotExist() {
         AppUser dbAdmin = userRepository.findByUserName("admin");
         if (dbAdmin!=null){
@@ -59,7 +60,7 @@ public class AppUserServiceImpl implements AppUserService {
         admin.setUserName("admin");
         admin.setUserPass("admin-password");
         dbAdmin = saveUser(admin,roleService.findRoleByName(Roles.ROLE_ADMIN.toString()));
-        logger.info("Admin created " + dbAdmin.toString());
+        logger.info("Admin created ");
     }
 
     @Override

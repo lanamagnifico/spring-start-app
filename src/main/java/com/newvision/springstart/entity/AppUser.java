@@ -1,6 +1,7 @@
 package com.newvision.springstart.entity;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
 import java.util.Collection;
 
 @Entity
@@ -13,9 +14,11 @@ public class AppUser {
     private int id;
 
     @Column(name="USER_NAME")
+    @NotEmpty(message = "Please provide a name")
     private String userName;
 
     @Column(name="USER_PASS")
+    @NotEmpty(message = "Please provide a password")
     private String userPass;
 
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)

@@ -1,6 +1,7 @@
 package com.newvision.springstart.entity;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
 import java.util.Collection;
 
 @Entity
@@ -13,6 +14,7 @@ public class AppRole {
     private int id;
 
     @Column(name = "NAME")
+    @NotEmpty(message = "Please provide a name")
     private String name;
 
     @ManyToMany(mappedBy = "roles")
