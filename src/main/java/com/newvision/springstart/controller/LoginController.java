@@ -1,6 +1,5 @@
 package com.newvision.springstart.controller;
 
-import com.newvision.springstart.dao.AppUserRepository;
 import com.newvision.springstart.entity.AppUser;
 import com.newvision.springstart.service.AppUserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,7 +9,6 @@ import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
@@ -22,7 +20,9 @@ public class LoginController {
     private AppUserService userService;
 
     @GetMapping("/showCustomLoginPage")
-    public String showMyLoginPage() {
+    public String showMyLoginPage(Model theModel) {
+        AppUser theUser = new AppUser();
+        theModel.addAttribute("theUser", theUser);
         return "custom-login";
     }
 
@@ -31,21 +31,14 @@ public class LoginController {
         return "access-denied";
     }
 
-    @GetMapping("/registrationForm")
-    public String showRegistrationForm(Model theModel) {
-        AppUser theUser = new AppUser();
-        theModel.addAttribute("theUser", theUser);
-        return "registration-form";
-    }
-
     @PostMapping("/registrationProcess")
     public String peformRegistration(@Valid @ModelAttribute("theUser") AppUser theUser,
                                      RedirectAttributes model,
                                      Errors errors){
         if (errors.hasErrors()) {
-            return "registrationForm";
+            return "custom-login";
         }
         userService.save(theUser);
-        return "custom-login";
+        return "redirect:/showCustomLoginPage";
     }
 }
