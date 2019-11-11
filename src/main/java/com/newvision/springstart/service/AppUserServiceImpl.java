@@ -1,6 +1,5 @@
 package com.newvision.springstart.service;
 
-import com.newvision.springstart.dao.AppRoleRepository;
 import com.newvision.springstart.dao.AppUserRepository;
 import com.newvision.springstart.entity.AppRole;
 import com.newvision.springstart.entity.AppUser;
