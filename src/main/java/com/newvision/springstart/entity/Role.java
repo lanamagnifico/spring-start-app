@@ -5,26 +5,26 @@ import javax.validation.constraints.NotEmpty;
 import java.util.Collection;
 
 @Entity
-@Table(name = "APP_ROLE")
-public class AppRole {
+@Table(name = "DBROLES")
+public class Role {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID")
     private int id;
 
-    @Column(name = "NAME")
-    @NotEmpty(message = "Please provide a name")
-    private String name;
+    @Column(name = "TITLE")
+    @NotEmpty(message = "Please provide a title")
+    private String title;
 
     @ManyToMany(mappedBy = "roles")
-    private Collection<AppUser> users;
+    private Collection<User> users;
 
-    public AppRole() {
+    public Role() {
     }
 
-    public AppRole(String name) {
-        this.name = name;
+    public Role(String title) {
+        this.title = title;
     }
 
     public int getId() {
@@ -35,19 +35,19 @@ public class AppRole {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getTitle() {
+        return title;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
-    public Collection<AppUser> getUsers() {
+    public Collection<User> getUsers() {
         return users;
     }
 
-    public void setUsers(Collection<AppUser> users) {
+    public void setUsers(Collection<User> users) {
         this.users = users;
     }
 
@@ -55,7 +55,7 @@ public class AppRole {
     public String toString() {
         return "AppRole{" +
                 "id=" + id +
-                ", name='" + name + '\'' +
+                ", title='" + title + '\'' +
                 '}';
     }
 }

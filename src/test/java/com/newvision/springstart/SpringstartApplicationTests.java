@@ -2,8 +2,8 @@ package com.newvision.springstart;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.newvision.springstart.entity.AppUser;
-import com.newvision.springstart.service.AppUserService;
+import com.newvision.springstart.entity.User;
+import com.newvision.springstart.service.UserService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -35,7 +35,7 @@ public class SpringstartApplicationTests {
 	@LocalServerPort
 	int port;
 	@Autowired
-	AppUserService userService;
+	UserService userService;
 	static final ObjectMapper om = new ObjectMapper();
 
 	@BeforeEach
@@ -68,7 +68,7 @@ public class SpringstartApplicationTests {
 	@Test
 	public void whenUserWithoutAuthority_GetApi_ThenForbidden403() throws Exception {
 
-		AppUser theUser = new AppUser();
+		User theUser = new User();
 		theUser.setUserName("user");
 		theUser.setUserPass("user-password");
 		userService.save(theUser);

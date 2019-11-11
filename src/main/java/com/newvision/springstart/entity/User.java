@@ -2,11 +2,12 @@ package com.newvision.springstart.entity;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
-import java.util.Collection;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
-@Table(name="APP_USERS")
-public class AppUser {
+@Table(name="DBUSERS")
+public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -22,12 +23,12 @@ public class AppUser {
     private String userPass;
 
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
-    @JoinTable(name = "APP_USER_ROLES",
-            joinColumns = @JoinColumn(name = "APP_USER_ID"),
-            inverseJoinColumns = @JoinColumn(name = "APP_ROLE_ID"))
-    private Collection<AppRole> roles;
+    @JoinTable(name = "USERS_ROLES",
+            joinColumns = @JoinColumn(name = "USER_ID"),
+            inverseJoinColumns = @JoinColumn(name = "ROLE_ID"))
+    private Set<Role> roles;
 
-    public AppUser(){
+    public User(){
 
     }
 
@@ -55,17 +56,24 @@ public class AppUser {
         this.userPass = userPass;
     }
 
-    public Collection<AppRole> getRoles() {
+    public Set<Role> getRoles() {
         return roles;
     }
 
-    public void setRoles(Collection<AppRole> roles) {
+    public void setRoles(Set<Role> roles) {
         this.roles = roles;
+    }
+
+    public void addRole(Role theRole) {
+        if (roles==null) {
+            roles = new HashSet<>();
+        }
+        roles.add(theRole);
     }
 
     @Override
     public String toString() {
-        return "AppUser{" +
+        return "User{" +
                 "id=" + id +
                 ", userName='" + userName + '\'' +
                 ", userPass='" + userPass + '\'' +

@@ -1,7 +1,7 @@
 package com.newvision.springstart.controller;
 
-import com.newvision.springstart.entity.AppUser;
-import com.newvision.springstart.service.AppUserService;
+import com.newvision.springstart.entity.User;
+import com.newvision.springstart.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,11 +17,11 @@ import javax.validation.Valid;
 public class LoginController {
 
     @Autowired
-    private AppUserService userService;
+    private UserService userService;
 
     @GetMapping("/showCustomLoginPage")
     public String showMyLoginPage(Model theModel) {
-        AppUser theUser = new AppUser();
+        User theUser = new User();
         theModel.addAttribute("theUser", theUser);
         return "custom-login";
     }
@@ -32,7 +32,7 @@ public class LoginController {
     }
 
     @PostMapping("/registrationProcess")
-    public String peformRegistration(@Valid @ModelAttribute("theUser") AppUser theUser,
+    public String peformRegistration(@Valid @ModelAttribute("theUser") User theUser,
                                      RedirectAttributes model,
                                      Errors errors){
         if (errors.hasErrors()) {
