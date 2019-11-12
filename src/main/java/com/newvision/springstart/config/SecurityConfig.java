@@ -32,7 +32,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .authorizeRequests()
                     .antMatchers("/css/**","/js/**","/resources/**").permitAll()
-                    .antMatchers("/console/**").permitAll()
+                    .antMatchers("/console/**").hasRole("ADMIN")
                     .antMatchers("/api/**").hasRole("ADMIN")
                     .anyRequest().permitAll()
                 .and()
@@ -57,18 +57,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(AuthenticationManagerBuilder auth)
             throws Exception {
-//        PasswordEncoder encoder = customPasswordEncoder();
-//        auth
-//                .inMemoryAuthentication().passwordEncoder(encoder)
-//                .withUser("user").password(encoder.encode("user-password")).roles("USER").and()
-//                .withUser("admin").password(encoder.encode("admin-password")).roles("USER", "ADMIN");
         auth.authenticationProvider(authenticationProvider());
     }
     @Bean
     public DaoAuthenticationProvider authenticationProvider() {
         DaoAuthenticationProvider auth = new DaoAuthenticationProvider();
-        auth.setUserDetailsService(userService); //set the custom user details service
-        auth.setPasswordEncoder(customPasswordEncoder()); //set the password encoder - bcrypt
+        auth.setUserDetailsService(userService); 
+        auth.setPasswordEncoder(customPasswordEncoder()); 
         return auth;
     }
     @Bean
