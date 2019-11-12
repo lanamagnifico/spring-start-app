@@ -31,25 +31,42 @@ public class UserServiceImpl implements UserService {
     private Logger logger = Logger.getLogger(getClass().getName());
 
     @Override
-    public User save(User user) {
-        user.setUserPass(passwordEncoder.encode(user.getUserPass()));
-        user.addRole(roleService.findRoleByName(RolesEnum.ROLE_USER.toString()));
-        User dbUser = userRepository.save(user);
-        logger.info("User "+dbUser.getUserName()+" created.");
-        return dbUser;
+    public User save(User theUser) {
+        User dbUserByName = userRepository.findByUserName(theUser.getUserName());
+        if (dbUserByName == null && theUser.getId() == 0) {
+            // this is new user 
+            theUser.setUserName(theUser.getUserName().trim());
+            theUser.setUserPass(passwordEncoder.encode(theUser.getUserPass()));
+            theUser.addRole(roleService.findRoleByName(RolesEnum.ROLE_USER.toString()));
+            dbUserByName = userRepository.save(theUser);
+        } else if (dbUserByName == null && theUser.getId() != 0) {
+            // only update name and pass
+            theUser.setUserName(theUser.getUserName().trim());
+            theUser.setUserPass(passwordEncoder.encode(theUser.getUserPass())); 
+            dbUserByName = userRepository.save(theUser);
+        } else if (dbUserByName.getId() == theUser.getId()) {
+            // only update pass
+            theUser.setUserPass(passwordEncoder.encode(theUser.getUserPass())); 
+            dbUserByName = userRepository.save(theUser);
+        } else if (dbUserByName.getId() != theUser.getId()) {
+            // the user with the same name is allready exist
+            throw new RuntimeException("This name is already exist");
+        }
+        return dbUserByName;
     }
 
     @Override
     public User findByUserName(String userName) {
-        return userRepository.findByUserName(userName);
+        User user = userRepository.findByUserName(userName);
+        if (user == null) {
+            throw new UsernameNotFoundException("Invalid username.");
+        }
+        return user;
     }
 
     @Override
     public UserDetails loadUserByUsername(String userName) throws UsernameNotFoundException {
-        User user = userRepository.findByUserName(userName);
-        if (user == null) {
-            throw new UsernameNotFoundException("Invalid username or password.");
-        }
+        User user = findByUserName(userName);
         return new org.springframework.security.core.userdetails.User(user.getUserName(), user.getUserPass(),
                 mapRolesToAuthorities(user.getRoles()));
     }
