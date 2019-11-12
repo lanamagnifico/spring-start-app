@@ -2,7 +2,6 @@ package com.newvision.springstart;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.newvision.springstart.entity.User;
 import com.newvision.springstart.service.UserService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -43,9 +42,11 @@ public class SpringstartApplicationTests {
 		restTemplate = new TestRestTemplate();
 		path  = new URL("http://localhost:" + port + "/spring-start-app/api");
 	}
+
 	@Test
 	void whenUserExist_thenFindsByName_NotNull() {
 		assertThat(userService.findByUserName("admin")).isNotNull();
+		assertThat(userService.findByUserName("user")).isNotNull();
 	}
 
 	@Test
@@ -67,12 +68,6 @@ public class SpringstartApplicationTests {
 
 	@Test
 	public void whenUserWithoutAuthority_GetApi_ThenForbidden403() throws Exception {
-
-		User theUser = new User();
-		theUser.setUserName("user");
-		theUser.setUserPass("user-password");
-		userService.save(theUser);
-		assertThat(userService.findByUserName("user")).isNotNull();
 
 		String expected = "{\"status\":403,\"error\":\"Forbidden\",\"message\":\"Forbidden\",\"path\":\"/spring-start-app/api\"}";
 

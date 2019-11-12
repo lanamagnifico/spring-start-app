@@ -35,7 +35,7 @@
             <h5 class="text-success card-title"> You have been logged out.</h5>
           </c:if>
 
-          <form:form name='loginForm' action="authenticate" method='POST'>
+          <form:form name='loginForm' action="authenticate" method='POST' autocomplete="off">
             <!-- Login -->
             <div class="form-group">
               <label for="username" class="col-sm-2 col-form-label sr-only">Login</label>
@@ -72,7 +72,8 @@
         </div>
 
         <div style="padding-top: 30px" class="card-body">
-          <form:form name="registrationForm" modelAttribute="theUser" action="registrationProcess" method="POST">
+          <form:form name="registrationForm" modelAttribute="theUser" 
+          action="registrationProcess" method="POST" autocomplete="off">
 
             <!-- Login -->
             <div class="form-group">
