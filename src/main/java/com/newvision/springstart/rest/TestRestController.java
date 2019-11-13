@@ -11,6 +11,6 @@ import java.time.LocalDateTime;
 public class TestRestController {
     @GetMapping
     public String sayHello() {
-        return "Hello, Spring Rest! Time on server is " + LocalDateTime.now();
+        return "Hello, Spring Rest!\n Time on server is " + LocalDateTime.now();
     }
 }

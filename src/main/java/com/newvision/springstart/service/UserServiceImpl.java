@@ -15,7 +15,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Collection;
 import java.util.Optional;
-import java.util.logging.Logger;
+//import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
 @Service
@@ -28,7 +28,7 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private RoleService roleService;
 
-    private Logger logger = Logger.getLogger(getClass().getName());
+    //private Logger logger = Logger.getLogger(getClass().getName());
 
     @Override
     public User save(User theUser) {

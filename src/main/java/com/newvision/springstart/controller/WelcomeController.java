@@ -13,7 +13,7 @@ public class WelcomeController {
 
     @RequestMapping(method = RequestMethod.GET)
     public String showWelcomePage(Model theModel) {
-        theModel.addAttribute("message_mvc","Hello, Spring MVC! Time on server is " + LocalDateTime.now());
+        theModel.addAttribute("message_mvc","Hello, Spring MVC!\n Time on server is " + LocalDateTime.now());
         return "welcome";
     }
 }
